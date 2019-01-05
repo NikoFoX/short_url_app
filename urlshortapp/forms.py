@@ -1,4 +1,4 @@
 from django import forms
 
 class UrlForm(forms.Form):
-    url = forms.URLField()
+    url = forms.URLField(label="Insert URL:")

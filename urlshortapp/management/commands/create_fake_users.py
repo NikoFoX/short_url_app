@@ -12,9 +12,9 @@ class Command(BaseCommand):
         if options['users_number']:
             num = int(options['users_number'][0])
             # GET DATA FOR NEW USER
-            for _ in range(num):
+            for a in range(num):
                 self.new_user()
-                self.stdout.write("User added")
+                self.stdout.write("User created: " + str(a+1) + " out of " + str(num))
 
     def new_user(self):
         data = requests.get("https://randomuser.me/api/?format=xml")

@@ -3,5 +3,6 @@ from . import views
 
 app_name = "urlshortapp"
 urlpatterns = [
-    path('', views.short_url_form_view, name='index'),
+    path('', views.index_view, name='index'),
+    path('shorted', views.short_url_display_view, name='shorted'),
 ]

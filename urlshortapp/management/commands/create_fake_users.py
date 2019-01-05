@@ -13,10 +13,10 @@ class Command(BaseCommand):
             num = int(options['users_number'][0])
             # GET DATA FOR NEW USER
             for _ in range(num):
-                get_user()
+                self.new_user()
                 self.stdout.write("User added")
 
-    def get_user():
+    def new_user(self):
         data = requests.get("https://randomuser.me/api/?format=xml")
         parser = lxml.etree.XMLParser(ns_clean=True)
         data = data.content

@@ -51,8 +51,7 @@ def index_view(request):
                     submitter = url_submitter
                 )
                 new_short_url.save()
-                return redirect('urlshortapp:short-url-display', short_url_url=new_short_url.short_url)
-                #return HttpResponseRedirect(reverse('urlshortapp:shorted', args={new_short_url.short_url})
+                return redirect('urlshortapp:short-url', short_url_url=new_short_url.short_url)
             #form = UrlForm()
     else:
         form = UrlForm()

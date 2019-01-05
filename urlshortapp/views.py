@@ -65,15 +65,19 @@ def index_view(request):
 
 # Site of redirection after succesfull submitting new URL
 def short_url_display_view(request, short_url_url):
-    text = "Url shorted!"
+    short_url_object = ShortUrl.objects.get(short_url=short_url_url)
+    short_url = short_url_url
+    full_url = short_url_object.full_url
+    submitter = short_url_object.submitter
     context = {
-        'text': text,
+        'short_url': short_url,
+        'full_url': full_url,
+        'submitter': submitter,
+        'text': "", #debug
     }
     return render(request, 'urlshortapp/shorted.html', context)
 
 # Site displaying the full_url site
 def short_url_view(request, short_url_url):
-    pass
-
-def short_url_check_view(request, short_url_url):
-    pass
+    full_url = ShortUrl.objects.get(short_url=short_url_url).full_url
+    return redirect(full_url)

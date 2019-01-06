@@ -8,13 +8,12 @@ import requests
 
 # index view
 def index_view(request):
-    #### CONFIGURABLE!
-    len = 6
     if request.method == "POST":
         # checking of the request's method
         form = UrlForm(request.POST)
         if form.is_valid():
             # if validation of form successful
+            len = int(form.cleaned_data.get('len'))
             short_urls = ShortUrl.objects.all()
             submitted_url = form.cleaned_data.get('url')
             if submitted_url in list(short_urls.values_list('full_url', flat=True)):
@@ -42,14 +41,13 @@ def index_view(request):
                     submitter = url_submitter
                 )
                 new_short_url.save()
-                return redirect('urlshortapp:short-url', short_url_url=new_short_url.short_url)
+                # redirect to the created site
+                return redirect('urlshortapp:short-url-submitted', short_url_url=new_short_url.short_url)
             #form = UrlForm()
     else:
         form = UrlForm()
-        text= ""
     context = {
         'form': form,
-        'text': text,
     }
     return render(request, 'urlshortapp/index.html', context)
 
@@ -70,3 +68,12 @@ def short_url_display_view(request, short_url_url):
 def short_url_view(request, short_url_url):
     full_url = ShortUrl.objects.get(short_url=short_url_url).full_url
     return redirect(full_url)
+
+def short_url_submitted(request, short_url_url):
+    host = request.get_host()
+    short_url = str(host) + "/" + str(short_url_url)
+    context = {
+        'short_url': short_url,
+        'short_url_url': short_url_url,
+    }
+    return render(request, 'urlshortapp/submitted.html', context)

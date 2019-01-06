@@ -2,6 +2,8 @@
 
 <form class="" action="" method="post">
   {% csrf_token %}
-  {{ form }}
+  {{ form.url.label }}{{ form.url|linebreaks}}
+  {{ form.len.label }} {{ form.len }}
+  <br>
   <input type="submit" name="" value="Submit">
 </form>

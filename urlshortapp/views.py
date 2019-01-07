@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, reverse
 from django.http import HttpResponseRedirect
-from .models import ShortUrl, Submitter
+from .models import ShortUrl
+from django.contrib.auth.models import User
 from .forms import UrlForm
 import string
 import random
@@ -32,8 +33,8 @@ def index_view(request):
                         shortened_url_string = shortened_url_string + elem
                     if not shortened_url_string in list(short_urls.values_list("short_url", flat=True)):
                         break
-                submitters = Submitter.objects.all()
-                url_submitter = random.choice(submitters)
+                users = User.objects.all()
+                url_submitter = random.choice(users)
                 # create new entry in DB
                 new_short_url = ShortUrl(
                     short_url = shortened_url_string,

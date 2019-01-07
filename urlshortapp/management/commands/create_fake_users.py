@@ -1,6 +1,7 @@
 from django.core.management.base import BaseCommand, CommandError
-from urlshortapp.models import Submitter
-import lxml, requests
+from django.contrib.auth.models import User
+import requests
+from lxml import etree
 
 class Command(BaseCommand):
     help = "Creates fake users"
@@ -18,9 +19,9 @@ class Command(BaseCommand):
 
     def new_user(self):
         data = requests.get("https://randomuser.me/api/?format=xml")
-        parser = lxml.etree.XMLParser(ns_clean=True)
+        parser = etree.XMLParser()
         data = data.content
-        tree = lxml.etree.XML(data, parser=parser, base_url=None)
+        tree = etree.XML(data, parser=parser, base_url=None)
         tree_results = tree.xpath("//results")[0]
         username = tree_results.find("login/username").text
         first_name = tree_results.find("name/first").text
@@ -28,7 +29,7 @@ class Command(BaseCommand):
         email = tree_results.find("email").text
         password = tree_results.find("login/password").text
         date_joined = tree_results.find("registered/date").text
-        s = Submitter(
+        user = User(
             username=username,
             first_name=first_name,
             last_name=last_name,
@@ -36,4 +37,4 @@ class Command(BaseCommand):
             password=password,
             date_joined=date_joined
         )
-        s.save()
+        user.save()

@@ -1,1 +1,1 @@
-web: gunicorn short-url-foxapp.wsgi
+web: gunicorn urlshort.wsgi

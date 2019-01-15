@@ -2,3 +2,4 @@ lxml
 requests
 gunicorn
 django
+psycopg2

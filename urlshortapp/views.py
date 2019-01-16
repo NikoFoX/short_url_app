@@ -21,7 +21,7 @@ def index_view(request):
                 # if submitted URL is already in DB,
                 # redirect to existing view of short url
                 existing_short_url = short_urls.get(full_url=submitted_url).short_url
-                return redirect('urlshortapp:short-url-display', short_url_url=existing_short_url)
+                return redirect('urlshortapp:short-url-submitted', short_url_url=existing_short_url)
             else:
                 # submitted URL not in DB
                 # randomize new short_url string

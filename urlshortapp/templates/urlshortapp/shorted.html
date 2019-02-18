@@ -1,5 +1,5 @@
 <h2> This shortened url points to:</h2>
-<h2> <a href="{{full_url}}">{{full_url}}</a></h2>
+<h2> <a href="{{short_url.full_url}}">{{short_url.full_url}}</a></h2>
 <br><br><br>
 <h3>Submitted by:</h3>
-{{ submitter.first_name|capfirst }} {{ submitter.last_name|capfirst}} ({{submitter.username}})
+{{ short_url.submitter.first_name|capfirst }} {{ short_url.submitter.last_name|capfirst}} ({{short_url.submitter.username}})

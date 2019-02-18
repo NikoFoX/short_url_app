@@ -1,2 +1,2 @@
 <h2> Your shortened link: </h2>
-<h3> <a href="{% url 'urlshortapp:short-url' short_url_url %}">{{ short_url }}</a> </h3>
+<h3> <a href="{% url 'urlshortapp:short-url' short_url %}">{{request.get_host}}{% url 'urlshortapp:short-url' short_url %}</a> </h3>

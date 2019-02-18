@@ -79,15 +79,26 @@ WSGI_APPLICATION = 'urlshort.wsgi.application'
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
+    'default':{
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'postgres',
+        'USER': 'postgres',
+        'PASSWORD': 'postgres',
+        'HOST': 'localhost',
+        'PORT': '5432',
+    },
+}
+
+"""
+    'elephantsql': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'zubnjgcr',
         'USER': 'zubnjgcr',
         'PASSWORD': 'OY8AxCtgflTgixInzkcOpODd7937Nnrv',
         'HOST': 'manny.db.elephantsql.com',
         'PORT': '5432',
-    }
-}
+    },
+"""
 
 
 # Password validation

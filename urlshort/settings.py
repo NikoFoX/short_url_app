@@ -87,10 +87,7 @@ DATABASES = {
         'HOST': 'localhost',
         'PORT': '5432',
     },
-}
-
-"""
-    'elephantsql': {
+    'elephantsql':{
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'zubnjgcr',
         'USER': 'zubnjgcr',
@@ -98,7 +95,7 @@ DATABASES = {
         'HOST': 'manny.db.elephantsql.com',
         'PORT': '5432',
     },
-"""
+}
 
 
 # Password validation
@@ -138,3 +135,4 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = '/static/'

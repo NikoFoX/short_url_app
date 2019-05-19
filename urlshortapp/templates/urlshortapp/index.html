@@ -1,5 +1,6 @@
+{% load staticfiles %}
 <h1>URL shortening site</h1>
-
+<link rel="shortcut icon" href="{% static '/favicon.ico'%}">
 <form class="" action="" method="post">
   {% csrf_token %}
   {{ form.url.label }}{{ form.url|linebreaks}}

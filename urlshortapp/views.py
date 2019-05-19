@@ -1,3 +1,4 @@
+from django.core.exceptions import ObjectDoesNotExist
 from django.shortcuts import render, redirect, reverse
 from .models import ShortUrl
 from django.contrib.auth.models import User
@@ -132,7 +133,10 @@ class ShortUrlView(generic.RedirectView):
     permanent = True
 
     def get_redirect_url(self, *args, **kwargs):
-        redirect_to = ShortUrl.objects.get(short_url=self.kwargs.get("short_url")).full_url
+        try:
+            redirect_to = ShortUrl.objects.get(short_url=self.kwargs.get("short_url")).full_url
+        except ObjectDoesNotExist:
+            raise ValueError(f"ShortUrl with given short_url {self.kwargs.get('short_url')} doesn't exist")
         return redirect_to
 
 
@@ -152,4 +156,7 @@ class ShortUrlSubmittedView(generic.DetailView):
     context_object_name = 'short_url'
 
     def get_object(self, queryset=None):
-        return ShortUrl.objects.get(short_url=self.kwargs.get("short_url"))
+        try:
+            return ShortUrl.objects.get(short_url=self.kwargs.get("short_url"))
+        except ObjectDoesNotExist:
+            raise ValueError(f"Submitted url's' ShortUrl with given short_url {self.kwargs.get('short_url')} doesn't exist")

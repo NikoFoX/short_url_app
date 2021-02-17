@@ -22,8 +22,8 @@ Submitters are fetched randomly from database and bound to new entry.
 
 3) At /XXXX/submitted you will see XXXX - the generated short URL which you can use.
 
-The short link example: localhost/3GHH.
+The short link example: https://short-url-foxapp.herokuapp.com/9H3DE0/ which routes to https://www.google.com/.
 
 *Entering the same URL directs you to the page with already generated short URL.
 
-To check where does the short URL directs to, before actually directing to the original URL, prepend the URL with "!" sign, for example: localhost/!3GHH.
+To check where does the short URL directs to, before actually directing to the original URL, prepend the URL with "!" sign, for example: https://short-url-foxapp.herokuapp.com/!9H3DE0/.
